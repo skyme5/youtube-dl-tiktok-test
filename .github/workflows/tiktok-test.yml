@@ -1,0 +1,26 @@
+name: TikTok Extractor
+# This workflow is triggered on pushes to the repository.
+on:
+  schedule:
+    - cron: '1 2 */1 * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [2.7, 3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repo: skyme5/youtube-dl
+        ref: tiktok
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Run Tests
+      run: |
+        python test/test_download.py TestDownload.test_TikTok
+        python test/test_download.py TestDownload.test_TikTok_1
