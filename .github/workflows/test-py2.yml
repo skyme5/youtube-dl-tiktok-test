@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: skyme5/youtube-dl
+          repository: skyme5/youtube-dl-1
           ref: tiktok
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
